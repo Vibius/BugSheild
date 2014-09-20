@@ -1,0 +1,30 @@
+.codestart{
+    margin:0;
+}
+.code{
+    padding-left:4px;
+    border-radius:0px !important;
+}
+.gutter{
+    padding-left:2px;
+    padding-right:2px;
+}
+.language-php{
+    margin-top:0 !important; 
+    height:50%;
+    overflow-y: hidden !important;
+}
+
+.line-numbers{
+    padding-left:7px !important;
+    border-left:0 !important;
+    box-shadow: none !important;
+}
+.line-numbers-rows{
+    width:30px !important;
+    padding-right:0px !important;
+}
+.line-highlight{
+    top:170.5px !important;
+    background:rgba(248, 38, 55, 0.65);
+}
