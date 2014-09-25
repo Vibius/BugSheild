@@ -95,21 +95,29 @@
                     <?php
                         $content = file($file);
                     ?>
-                    <pre class="line-numbers " data-start="<?=$line-9?>" data-line="9"><code class="language-php codestart"><?php
-                        
-$outputtedLines = 0;
-$currentLine = 0;
-
-foreach($content as $fileLine){
-    $currentLine++;
-    if($currentLine >= $line - 9 ){
-        if($outputtedLines > 18) break;
-        $outputtedLines++;
-        echo htmlspecialchars($fileLine);
-    }
+                    <?php
+$lineNum = 0;
+$output = '';
+$outputted=0;
+foreach ($content as $cl) {
+    $lineNum++;
     
+    if($lineNum >= $line-5 && $lineNum <= $line+5 ){
+        $outputted++;
+        $output .= $cl;
+    }
 }
-?></code></pre>
+?>
+
+<pre class="line-numbers " data-start="<?php if($line > 5){echo $line-5;}else{echo 1;} ?>" 
+data-line="<?php if($line > 5){echo 6;}else{echo $line;} ?>"><code class="language-php codestart"><?php
+echo htmlspecialchars($output);
+while($outputted <= 10){
+    echo PHP_EOL;
+    $outputted++;
+}
+?>
+</code></pre>
                 </div>
                 
                 <div class="main-panel-details">
@@ -136,6 +144,9 @@ foreach($_SERVER as $key => $value){
     echo "<b style='color:rgba(30, 32, 33, 0.58)'>$key:</b> $value <br>";
 }
 ?></pre>
+                    </div>
+
+
                     </div>
 
                 </div>
