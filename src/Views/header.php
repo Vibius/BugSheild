@@ -141,7 +141,9 @@ while($outputted <= 10){
                         <p><b>SERVER:</b> <span class="fa fa-angle-down"></span></p>
 <pre class=><?php  
 foreach($_SERVER as $key => $value){
-    echo "<b style='color:rgba(30, 32, 33, 0.58)'>$key:</b> $value <br>";
+    if(is_string($value)){
+        echo "<b style='color:rgba(30, 32, 33, 0.58)'>$key:</b> $value <br>";
+    }
 }
 ?></pre>
                     </div>
