@@ -70,8 +70,9 @@ body,html{
     color:#fff;
 }
 
-.stack-slideable > p > pre{
+.stack-slideable > pre{
      font-weight: 300;   
+     font-size:10px;
 }
 
 .stack-text-bolder{

@@ -25,32 +25,33 @@
     <div class="wrap">
         
         <div class="left-panel">
-           <?php foreach( debug_backtrace() as $action ){ ?>
+           <?php foreach( $trace as $action ){ ?>
             
             <div class="left-panel-stack">
                 
-                <p class="stack-function"><?=$action['function']?> <span class="fa fa-angle-down"></span></p>
+                <p class="stack-function">
+                    <?php if(isset($action['line'])){ ?>
+                        <b class="stack-text-bolder" style="float:left;display:inline-block;width:25px;"><i><?=$action['line']?></i></b> 
+                    <?php }else{ ?>
+                        <b class="stack-text-bolder" style="float:left;display:inline-block;width:25px;height:10px;"><i></i></b> 
+                    <?php } ?>
+                <?=$action['function']?> <span class="fa fa-angle-down"></span></p>
                 
                 <div class="stack-slideable">
                     
                     <?php if(isset($action['file'])){ ?>
                     <p class="stack-class">
                         <span class="stack-text-bolder">File:</span> 
-                        <i><?=$action['file']?></i>
+                        <i><small><?=$action['file']?></small></i>
                     </p>
                     <?php } ?>
                     
-                    <?php if(isset($action['line'])){ ?>
-                    <p class="stack-class">
-                        <span class="stack-text-bolder">Line:</span> 
-                        <i><?=$action['line']?></i>
-                    </p>
-                    <?php } ?>
+
                     
                     <?php if(isset($action['class'])){ ?>
                     <p class="stack-class">
                         <span class="stack-text-bolder">Class:</span> 
-                        <i><?=$action['class']?></i>
+                        <i><small><?=$action['class']?></small></i>
                     </p>
                     <?php } ?>
                                         
@@ -63,9 +64,25 @@
             
                         foreach( $action['args'] as $num => $arg ){ 
                                if( is_string($arg)){
-                                   echo "<p> $num: $arg </p>";
+                                   if(!empty($arg)){
+                                      echo "<p> <small> $num: $arg  </small></p>";
+                                   }
                                }else{
-                                   echo "<p> $num: Array </p>";
+                                $vals = [];
+                                    ob_start();
+                                        foreach ($arg as $key => $value) {
+                                            ob_start();
+                                                 print_r($value);
+                                            array_push($vals, ob_get_clean());
+                                        }
+                                    $arr = ob_get_clean();
+                                    $count = 0;
+                                   foreach ($vals as $v) {
+                                        $count++;
+                                        if(!empty($v)){
+                                            echo "<p style=''> <small>$count: $v</small> </p>";
+                                        }
+                                   }
                                }
                         } ?>
                     </p>

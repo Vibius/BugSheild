@@ -10,13 +10,13 @@ class Shield{
 
 	private $exceptionPool;
 
-	public function deffend($message, $line, $file, $exceptionCode, $exception){
+	public function deffend($message, $line, $file, $exceptionCode, $exception, $trace){
 			ob_clean();
 
-			$this->getView($message, $line, $file, $exceptionCode, $exception);
+			$this->getView($message, $line, $file, $exceptionCode, $exception, $trace);
 	}
 
-	public function getView($message, $line, $file, $exceptionCode, $exception){
+	public function getView($message, $line, $file, $exceptionCode, $exception, $trace){
 		require 'Views/header.php';
 	}
 
