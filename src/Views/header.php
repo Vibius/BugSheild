@@ -67,7 +67,7 @@
                                    if(!empty($arg)){
                                       echo "<p> <small> $num: $arg  </small></p>";
                                    }
-                               }else{
+                               }else if(is_array($arg)){
                                 $vals = [];
                                     ob_start();
                                         foreach ($arg as $key => $value) {
@@ -83,6 +83,8 @@
                                             echo "<p style=''> <small>$count: $v</small> </p>";
                                         }
                                    }
+                               }else{
+                                    echo " - ";
                                }
                         } ?>
                     </p>
